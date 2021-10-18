@@ -6,7 +6,7 @@ import org.wit.eventmngr.console.models.EventModel
 import org.wit.eventmngr.console.views.EventView
 
 class EventController {
-    // val events = PlacemarkMemStore()
+    // val events = EventMemStore()
     val events = EventJSONStore()
     val eventView = EventView()
     val logger = KotlinLogging.logger {}
@@ -33,18 +33,18 @@ class EventController {
             }
             println()
         } while (input != -1)
-        logger.info { "Shutting Down Placemark Console App" }
+        logger.info { "Shutting Down Event Manager App" }
     }
 
     fun menu() :Int { return eventView.menu() }
 
     fun add(){
-        var aPlacemark = EventModel()
+        var anEvent = EventModel()
 
-        if (eventView.addPlacemarkData(aPlacemark))
-            events.create(aPlacemark)
+        if (eventView.addEventData(anEvent))
+            events.create(anEvent)
         else
-            logger.info("Placemark Not Added")
+            logger.info("Event Not Added")
     }
 
     fun list() {
@@ -55,44 +55,44 @@ class EventController {
 
         eventView.listevents(events)
         var searchId = eventView.getId()
-        val aPlacemark = search(searchId)
+        val anEvent = search(searchId)
 
-        if(aPlacemark != null) {
-            if(eventView.updatePlacemarkData(aPlacemark)) {
-                events.update(aPlacemark)
-                eventView.showPlacemark(aPlacemark)
-                logger.info("Placemark Updated : [ $aPlacemark ]")
+        if(anEvent != null) {
+            if(eventView.updateEventData(anEvent)) {
+                events.update(anEvent)
+                eventView.showEvent(anEvent)
+                logger.info("Event Updated : [ $anEvent ]")
             }
             else
-                logger.info("Placemark Not Updated")
+                logger.info("Event Not Updated")
         }
         else
-            println("Placemark Not Updated...")
+            println("Event Not Updated...")
     }
 
     fun delete() {
         eventView.listevents(events)
         var searchId = eventView.getId()
-        val aPlacemark = search(searchId)
+        val anEvent = search(searchId)
 
-        if(aPlacemark != null) {
-            events.delete(aPlacemark)
-            println("Placemark Deleted...")
+        if(anEvent != null) {
+            events.delete(anEvent)
+            println("Event Deleted...")
             eventView.listevents(events)
         }
         else
-            println("Placemark Not Deleted...")
+            println("Event Not Deleted...")
     }
 
     fun search() {
-        val aPlacemark = search(eventView.getId())!!
-        eventView.showPlacemark(aPlacemark)
+        val anEvent = search(eventView.getId())!!
+        eventView.showEvent(anEvent)
     }
 
 
-    fun search(id: Long) : PlacemarkModel? {
-        var foundPlacemark = events.findOne(id)
-        return foundPlacemark
+    fun search(id: Long) : EventModel? {
+        var foundEvent = events.findOne(id)
+        return foundEvent
     }
 
     fun dummyData() {

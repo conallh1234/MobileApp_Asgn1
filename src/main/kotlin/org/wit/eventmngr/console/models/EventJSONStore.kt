@@ -18,7 +18,7 @@ fun generateRandomId(): Long {
     return Random().nextLong()
 }
 
-class eventJSONStore : EventStore {
+class EventJSONStore : EventStore {
 
     var events = mutableListOf<EventModel>()
 

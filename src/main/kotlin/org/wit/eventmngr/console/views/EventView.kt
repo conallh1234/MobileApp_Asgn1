@@ -14,11 +14,10 @@ class EventView {
 
         println("EVENT MANAGER SYSTEM - MAIN MENU")
         println(" 1. Add An Event")
-        println(" 2. Update an Event's Title & Description")
-        println(" 3. Update an Events's Attendees")
-        println(" 4. List All Stored Events")
-        println(" 5. Search Stored Events")
-        println(" 6. Delete An Event")
+        println(" 2. Update an Event's Details")
+        println(" 3. List All Stored Events")
+        println(" 4. Search Stored Events")
+        println(" 5. Delete An Event")
         println(" -1. Exit App")
         println()
         print("Enter Option: ")
@@ -53,46 +52,53 @@ class EventView {
         event.title = readLine()!!
         print("Enter a Description : ")
         event.description = readLine()!!
-        print("Number of Attendees: ")
-        count = readLine()!!.toIntOrNull()!!
-        if(count!=null){
-            while (i < count){
-                var name : String
-                var paid : Boolean
-                var paidCapture : String = ""
+        print("Number a Location: ")
+        event.location = readLine()!!
 
-                print("Enter a Name for attendee #$count : ")
-                name = readLine()!!
-                print("Has this Attendee Paid: (Y/N)")
-                paidCapture = readLine()!!
-                if (paidCapture == "Y" ||paidCapture == "y"){
-                    paid = true
-                    event.attendees
-                }
-                else if (paidCapture == "N" || paidCapture == "n"){
-                    paid = false
-                }
-                i++
-            }
-        }
+        return event.title.isNotEmpty() && event.description.isNotEmpty() && event.location.isNotEmpty()
+//        count = readLine()!!.toIntOrNull()!!
+//        if(count!=null){
+//            while (i < count){
+//                var name : String
+//                var paid : Boolean
+//                var paidCapture : String = ""
+//
+//                print("Enter a Name for attendee #$count : ")
+//                name = readLine()!!
+//                print("Has this Attendee Paid: (Y/N)")
+//                paidCapture = readLine()!!
+//                if (paidCapture == "Y" ||paidCapture == "y"){
+//                    paid = true
+//                    event.attendees
+//                }
+//                else if (paidCapture == "N" || paidCapture == "n"){
+//                    paid = false
+//                }
+//                i++
+//            }
+//        }
 
-        return event.title.isNotEmpty() && event.description.isNotEmpty() && event.attendees.isNotEmpty()
+
     }
 
     fun updateEventDetails(event: EventModel) : Boolean {
 
         var tempTitle: String?
         var tempDescription: String?
+        var tempLocation: String?
 
         if (event != null) {
             print("Enter a new Title for [ " + event.title + " ] : ")
             tempTitle = readLine()!!
             print("Enter a new Description for [ " + event.description + " ] : ")
             tempDescription = readLine()!!
+            print("Enter a new Location for [ " + event.location + " ] : ")
+            tempLocation = readLine()!!
 
-            if (!tempTitle.isNullOrEmpty() && !tempDescription.isNullOrEmpty()) {
+            if (!tempTitle.isNullOrEmpty() && !tempDescription.isNullOrEmpty() && !tempLocation.isNullOrEmpty()) {
                 event.title = tempTitle
                 event.description = tempDescription
+                event.location = tempLocation
                 return true
             }
         }

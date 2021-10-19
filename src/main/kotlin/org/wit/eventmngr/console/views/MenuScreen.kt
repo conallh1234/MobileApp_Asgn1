@@ -6,32 +6,32 @@ import org.wit.eventmngr.console.controllers.EventUIController
 import tornadofx.*
 
 
-class MenuScreen : View("Placemark Main Menu") {
+class MenuScreen : View("Event Main Menu") {
 
-    val placemarkUIController: PlacemarkUIController by inject()
+    val eventUIController: EventUIController by inject()
 
     override val root = form {
         setPrefSize(400.0, 200.0)
         fieldset(labelPosition = Orientation.VERTICAL) {
             text("")
-            button("Add Placemark") {
+            button("Add Event") {
 
                 isDefaultButton = true
                 useMaxWidth = true
                 action {
                     runAsyncWithProgress {
-                        placemarkUIController.loadAddScreen()
+                        eventUIController.loadAddScreen()
                     }
                 }
             }
             text("")
-            button("List Placemarks") {
+            button("List Events") {
 
                 isDefaultButton = true
                 useMaxWidth = true
                 action {
                     runAsyncWithProgress {
-                        placemarkUIController.loadListScreen()
+                        eventUIController.loadListScreen()
                     }
                 }
             }
@@ -50,3 +50,4 @@ class MenuScreen : View("Placemark Main Menu") {
         }
 
     }
+}

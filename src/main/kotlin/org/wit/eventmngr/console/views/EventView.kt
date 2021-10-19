@@ -1,5 +1,7 @@
 package org.wit.eventmngr.console.views
 
+import com.sun.org.apache.xpath.internal.operations.Bool
+import org.wit.eventmngr.console.models.AttendeeModel
 import org.wit.eventmngr.console.models.EventJSONStore
 //import org.wit.eventmngr.console.models.EventMemStore
 import org.wit.eventmngr.console.models.EventModel
@@ -43,14 +45,38 @@ class EventView {
     }
 
     fun addEventData(event: EventModel) : Boolean {
+        var count : Int
+        var i = 0
 
         println()
         print("Enter a Title : ")
         event.title = readLine()!!
         print("Enter a Description : ")
         event.description = readLine()!!
+        print("Number of Attendees: ")
+        count = readLine()!!.toIntOrNull()!!
+        if(count!=null){
+            while (i < count){
+                var name : String
+                var paid : Boolean
+                var paidCapture : String = ""
 
-        return event.title.isNotEmpty() && event.description.isNotEmpty()
+                print("Enter a Name for attendee #$count : ")
+                name = readLine()!!
+                print("Has this Attendee Paid: (Y/N)")
+                paidCapture = readLine()!!
+                if (paidCapture == "Y" ||paidCapture == "y"){
+                    paid = true
+                    event.attendees
+                }
+                else if (paidCapture == "N" || paidCapture == "n"){
+                    paid = false
+                }
+                i++
+            }
+        }
+
+        return event.title.isNotEmpty() && event.description.isNotEmpty() && event.attendees.isNotEmpty()
     }
 
     fun updateEventDetails(event: EventModel) : Boolean {

@@ -18,7 +18,6 @@ class EventController {
 
     fun start() {
         var input: Int
-
         do {
             input = menu()
             when (input) {
@@ -48,17 +47,17 @@ class EventController {
     }
 
     fun list() {
-        eventView.listevents(events)
+        eventView.listEvents(events)
     }
 
     fun update() {
 
-        eventView.listevents(events)
+        eventView.listEvents(events)
         var searchId = eventView.getId()
         val anEvent = search(searchId)
 
         if(anEvent != null) {
-            if(eventView.updateEventData(anEvent)) {
+            if(eventView.updateEventDetails(anEvent)) {
                 events.update(anEvent)
                 eventView.showEvent(anEvent)
                 logger.info("Event Updated : [ $anEvent ]")
@@ -71,14 +70,14 @@ class EventController {
     }
 
     fun delete() {
-        eventView.listevents(events)
+        eventView.listEvents(events)
         var searchId = eventView.getId()
         val anEvent = search(searchId)
 
         if(anEvent != null) {
             events.delete(anEvent)
             println("Event Deleted...")
-            eventView.listevents(events)
+            eventView.listEvents(events)
         }
         else
             println("Event Not Deleted...")

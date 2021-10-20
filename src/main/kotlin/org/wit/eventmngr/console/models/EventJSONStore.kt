@@ -32,9 +32,8 @@ class EventJSONStore : EventStore {
         return events
     }
 
-    override fun findOne(id: Long) : EventModel? {
-        var foundEvent: EventModel? = events.find { p -> p.id == id }
-        return foundEvent
+    override fun findOne(id: Long): EventModel? {
+        return events.find { p -> p.id == id }
     }
 
     override fun create(event: EventModel) {

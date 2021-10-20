@@ -1,6 +1,5 @@
 package org.wit.eventmngr.console.views
 
-import com.sun.org.apache.xpath.internal.operations.Bool
 import org.wit.eventmngr.console.models.AttendeeModel
 import org.wit.eventmngr.console.models.EventJSONStore
 //import org.wit.eventmngr.console.models.EventMemStore

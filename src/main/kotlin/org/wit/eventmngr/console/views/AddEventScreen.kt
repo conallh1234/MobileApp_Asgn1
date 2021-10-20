@@ -31,7 +31,7 @@ class AddEventScreen: View("Add Event") {
                 useMaxWidth = true
                 action {
                     runAsyncWithProgress {
-                        eventUIController.add(_title.toString(),_description.toString(), _location.toString())
+                        eventUIController.add(_title.value.toString(),_description.value.toString(), _location.value.toString())
 
                     }
                 }
@@ -50,6 +50,7 @@ class AddEventScreen: View("Add Event") {
     override fun onDock() {
         _title.value = ""
         _description.value = ""
+        _location.value = ""
         model.clearDecorators()
     }
 }

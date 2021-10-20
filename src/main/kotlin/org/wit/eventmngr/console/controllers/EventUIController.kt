@@ -4,6 +4,7 @@ import mu.KotlinLogging
 import org.wit.eventmngr.console.models.EventJSONStore
 import org.wit.eventmngr.console.models.EventModel
 import org.wit.eventmngr.console.views.AddEventScreen
+import org.wit.eventmngr.console.views.FindEventScreen
 import org.wit.eventmngr.console.views.ListEventScreen
 import org.wit.eventmngr.console.views.MenuScreen
 

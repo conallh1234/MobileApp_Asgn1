@@ -32,6 +32,12 @@ class EventUIController : Controller() {
         events.logAll()
     }
 
+    fun loadSearchScreen() {
+        runLater {
+            find(MenuScreen::class).replaceWith(FindEventScreen::class, sizeToScene = true, centerOnScreen = true)
+        }
+    }
+
     fun loadAddScreen() {
         runLater {
             find(MenuScreen::class).replaceWith(AddEventScreen::class, sizeToScene = true, centerOnScreen = true)

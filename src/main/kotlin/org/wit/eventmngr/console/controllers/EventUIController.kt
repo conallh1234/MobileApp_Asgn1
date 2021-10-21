@@ -4,7 +4,6 @@ import mu.KotlinLogging
 import org.wit.eventmngr.console.models.EventJSONStore
 import org.wit.eventmngr.console.models.EventModel
 import org.wit.eventmngr.console.views.AddEventScreen
-import org.wit.eventmngr.console.views.FindEventScreen
 import org.wit.eventmngr.console.views.ListEventScreen
 import org.wit.eventmngr.console.views.MenuScreen
 
@@ -31,12 +30,6 @@ class EventUIController : Controller() {
             find(MenuScreen::class).replaceWith(ListEventScreen::class, sizeToScene = true, centerOnScreen = true)
         }
         events.logAll()
-    }
-
-    fun loadSearchScreen() {
-        runLater {
-            find(MenuScreen::class).replaceWith(FindEventScreen::class, sizeToScene = true, centerOnScreen = true)
-        }
     }
 
     fun loadAddScreen() {

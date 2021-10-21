@@ -25,17 +25,6 @@ class MenuScreen : View("Event Main Menu") {
                 }
             }
             text("")
-            button("Search Event") {
-
-                isDefaultButton = true
-                useMaxWidth = true
-                action {
-                    runAsyncWithProgress {
-                        eventUIController.loadSearchScreen()
-                    }
-                }
-            }
-            text("")
             button("List Events") {
 
                 isDefaultButton = true

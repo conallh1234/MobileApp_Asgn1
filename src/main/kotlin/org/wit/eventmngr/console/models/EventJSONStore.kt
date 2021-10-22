@@ -3,9 +3,12 @@ package org.wit.eventmngr.console.models
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
+import javafx.collections.ObservableList
+import javafx.collections.transformation.FilteredList
 import mu.KotlinLogging
 
 import org.wit.eventmngr.console.helpers.*
+import tornadofx.ItemViewModel
 import java.util.*
 
 private val logger = KotlinLogging.logger {}
@@ -21,6 +24,8 @@ fun generateRandomId(): Long {
 class EventJSONStore : EventStore {
 
     var events = mutableListOf<EventModel>()
+    var events2 = mutableListOf<Event>()
+
 
     init {
         if (exists(JSON_FILE)) {
@@ -51,6 +56,16 @@ class EventJSONStore : EventStore {
         serialize()
     }
 
+    fun updateUI(event: EventModel, title: String, description: String, location: String){
+        var foundEvent = findOne(event.id!!)
+        if (foundEvent != null) {
+            foundEvent.title = title
+            foundEvent.description = description
+            foundEvent.location = location
+        }
+        serialize()
+    }
+
     override fun delete(event: EventModel) {
         events.remove(event)
         serialize()
@@ -70,4 +85,5 @@ class EventJSONStore : EventStore {
         events = Gson().fromJson(jsonString, listType)
     }
 }
+
 

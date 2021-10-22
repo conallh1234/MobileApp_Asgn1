@@ -13,6 +13,7 @@ import tornadofx.runLater
 class EventUIController : Controller() {
 
     val events = EventJSONStore()
+    val events2 = EventJSONStore().events2
     val logger = KotlinLogging.logger {}
 
     init {
@@ -23,6 +24,13 @@ class EventUIController : Controller() {
         var anEvent = EventModel(title = _title, description = _description, location = _location)
         events.create(anEvent)
         logger.info("Event Added")
+    }
+
+    fun update(_id : Long,_title : String, _description : String, _location : String){
+        var anEvent = events.findOne(_id)
+        if(anEvent != null) {
+            events.updateUI(anEvent, _title, _description, _location)
+        }
     }
 
     fun loadListScreen() {

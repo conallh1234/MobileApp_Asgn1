@@ -21,9 +21,10 @@ class ListEventScreen : View("List Placemarks") {
     val data = tableContent.observable()
     override val root = vbox {
         setPrefSize(800.0, 300.0)
-        this += EventList::class
+        //this += EventList::class
         hbox {
-            this += EventList::class
+            this += EventList()
+            this += EventSearch()
         }
         button("Close") {
             useMaxWidth = true
